@@ -1,15 +1,6 @@
 #include <Python.h>
 #include <string.h>
-
-static char *hash_value(char *key, char *value)
-{
-    char *hashed_value;
-    // implement hashing
-    hashed_value = value;
-    // implement hashing above
-
-    return hashed_value;
-}
+#include <malloc.h>
 
 static PyObject *hash_password(PyObject *self, PyObject *args)
 {
@@ -19,8 +10,13 @@ static PyObject *hash_password(PyObject *self, PyObject *args)
     {
         Py_RETURN_NONE;
     }
-    char *key = "some_key";
-    char *hashed_value = hash_value(key, password);
+    char *key = "thisisthekey";
+    char hashed_value[13];
+    strcpy(hashed_value, password);
+    for (int i = 0; i < (int)strlen(password); i++)
+    {
+        hashed_value[i] = (char)(password[i] ^ key[i % strlen(key)]);
+    }
     return Py_BuildValue("s", hashed_value);
 }
 
@@ -36,8 +32,13 @@ static PyObject *check_hash(PyObject *self, PyObject *args)
     {
         Py_RETURN_NONE;
     }
-    char *key = "some_key";
-    char *hashed_value = hash_value(key, password);
+    char *key = "thisisthekey";
+    char hashed_value[13];
+    strcpy(hashed_value, password);
+    for (int i = 0; i < (int)strlen(password); i++)
+    {
+        hashed_value[i] = (char)(password[i] ^ key[i % (strlen(key))]);
+    }
     if (strcmp(hash, hashed_value) == 0)
     {
         return Py_BuildValue("O", Py_True);
@@ -54,7 +55,7 @@ static char check_hash_docs[] =
 static PyMethodDef hash_module_funcs[] = {
     {"hash_password", (PyCFunction)hash_password, METH_VARARGS, hash_password_docs},
     {"check_hash", (PyCFunction)check_hash, METH_VARARGS, check_hash_docs},
-    {NULL}};
+    {NULL, NULL}};
 
 static PyModuleDef hash_module = {PyModuleDef_HEAD_INIT, "hash_module", "Extension module example", 0, hash_module_funcs};
 
