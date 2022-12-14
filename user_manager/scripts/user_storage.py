@@ -14,7 +14,7 @@ class UserStorage:
 
     def get_user(self, username: str):
         for user in self.registered:
-            if user.name == username:
+            if user.username == username:
                 return user
 
     def is_registered(self, username: str):
@@ -25,7 +25,7 @@ class UserStorage:
 
     def remove_from_logged_in(self, username: str):
         for user in self.logged_in:
-            if user.name == username:
+            if user.username == username:
                 self.logged_in.remove(user)
                 break
         else:
