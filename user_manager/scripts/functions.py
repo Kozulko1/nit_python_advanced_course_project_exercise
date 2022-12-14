@@ -39,6 +39,8 @@ def login(username: str, password: str, user_storage: UserStorage):
             process.start()
             process.join()
             user_storage.log_in(user)
+        else:
+            print("Fulao si šifru")
     else:
         print("Probaj da se logujes ponovno")
 

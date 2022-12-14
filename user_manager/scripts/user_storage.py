@@ -19,7 +19,7 @@ class UserStorage:
 
     def is_registered(self, username: str):
         for user in self.registered:
-            if user.name == username:
+            if user.username == username:
                 return True
         return False
 
