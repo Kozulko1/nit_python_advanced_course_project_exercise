@@ -1,9 +1,15 @@
 import logging
+from time import sleep
 
 from hash_module import check_hash, hash_password
+from multiprocessing import Process
 from user import User
 from user_storage import UserStorage
 
+
+def login_process(username):
+    sleep(1)
+    print(f"User {username} is logged in")
 
 def print_contacts(user: User, user_storage: UserStorage):
     if user_storage.is_logged_in(user.username):
@@ -29,6 +35,9 @@ def login(username: str, password: str, user_storage: UserStorage):
     if user_storage.is_registered(username):
         user = user_storage.get_user(username)
         if check_hash(user.password, password):
+            process = Process(target=login_process, args=(username,))
+            process.start()
+            process.join()
             user_storage.log_in(user)
     else:
         print("Probaj da se logujes ponovno")
