@@ -1,4 +1,5 @@
 from user import User
+
 class UserStorage:
     def __init__(self):
         self.registered: list[User] = list()
@@ -23,4 +24,6 @@ class UserStorage:
             print("Već je logiran")
 
     def is_logged_in(self, user:User):
-        pass
+        if user in self.logged_in:
+            return True
+        return False
