@@ -12,6 +12,11 @@ class UserStorage:
         else:
             print("Već je registrovan")
 
+    def get_user(self, username: str):
+        for user in self.registered:
+            if user.name == username:
+                return user
+
     def is_registered(self, username: str):
         for user in self.registered:
             if user.name == username:

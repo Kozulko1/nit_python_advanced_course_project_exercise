@@ -27,7 +27,11 @@ def register(username: str, password: str, user_storage: UserStorage):
 
 def login(username: str, password: str, user_storage: UserStorage):
     if user_storage.is_registered(username):
-        pass
+        user = user_storage.get_user(username)
+        if check_hash(user.password, password):
+            user_storage.log_in(user)
+    else:
+        print("Probaj da se logujes ponovno")
 
 
 def logout(username: str, user_storage: UserStorage):
