@@ -56,8 +56,9 @@ def add_contact(username: str, contact: User, user_storage: UserStorage):
         logging.error("User nije logiran")
 
 
-def remove_contact(user: User, user_storage: UserStorage):
-    if user_storage.is_logged_in(user):
+def remove_contact(username: str, user_storage: UserStorage):
+    if user_storage.is_logged_in(username):
+        user = user_storage.get_user(username)
         del user.contacts
     else:
         logging.error("User nije logiran")
