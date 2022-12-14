@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 import logging
-
+from hash_module import hash_password
 
 __all__ = ["User"]
 
 
 class User:
     def __init__(self, username: str, password: str) -> None:
-        self.__check_password_validity(password)
+        self.__check_password_validity(hash_password(password))
         self.__username: str = username
         self.__password: str = password
         self.__contacts: list[User] = []

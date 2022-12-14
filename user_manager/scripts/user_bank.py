@@ -1,5 +1,5 @@
 from user import User
-class Users:
+class UserStorage:
     def __init__(self):
         self.registered: list[User] = list()
         self.logged_in: list[User] = list()
