@@ -41,6 +41,13 @@ class User:
         else:
             logging.log(logging.INFO, f"{new_user} already exists in contacts.")
 
+    @contacts.deleter
+    def contacts(self) -> None:
+        try:
+            del self.__contacts[0]
+        except IndexError as exc:
+            logging.log(logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}")
+
     def delete_contact_by_user(self, user: User) -> None:
         try:
             del self.__contacts[self.__contacts.index(user)]

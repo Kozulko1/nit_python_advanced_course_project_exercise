@@ -44,6 +44,9 @@ class TestUser(unittest.TestCase):
         self.assertEqual([contact], user_instance.contacts)
         mock_log.assert_called_once_with(logging.INFO, f"{contact} already exists in contacts.")
 
+        del user_instance.contacts
+        self.assertEqual([], user_instance.contacts)
+
     @patch("user_manager.scripts.user.logging.log")
     def test__delete_contact_by_user(self, mock_log: MagicMock):
         user_instance = User("name", "123")
