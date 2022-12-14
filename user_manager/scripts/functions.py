@@ -7,12 +7,13 @@ from .user import User
 from .user_storage import UserStorage
 
 
-__all__ = ["add_contact", "login", "login_process", "print_contacts", "register", "remove_contact"]
+__all__ = ["add_contact", "login", "logout" "login_process", "print_contacts", "register", "remove_contact"]
 
 
 def login_process(username):
     sleep(1)
     print(f"User {username} is logged in")
+
 
 def print_contacts(user: User, user_storage: UserStorage):
     if user_storage.is_logged_in(user.username):
