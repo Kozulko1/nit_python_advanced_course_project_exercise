@@ -5,16 +5,25 @@ from user import User
 from user_storage import UserStorage
 
 
-from user_manager import User, UserStorage
+def print_contacts(user: User, user_storage: UserStorage):
+    if user_storage.is_logged_in(user.username):
+        contacts_iterator = iter(user)
+        while True:
+            try:
+                print(next(contacts_iterator))
+            except StopIteration:
+                logging.info("Reached the end of the contacts list")
+                break
+    else:
+        logging.error(f"{user.username} is not logged in.")
 
-def some_function():
-    print("Some function")
 
 def register(username: str, password: str, user_storage: UserStorage):
     hashed_password = hash_password(password)
 
     new_user = User(username, password=hashed_password)
     user_storage.add_to_registered(new_user)
+
 
 def login(username: str, password: str, user_storage: UserStorage):
     if user_storage.is_registered(username):
