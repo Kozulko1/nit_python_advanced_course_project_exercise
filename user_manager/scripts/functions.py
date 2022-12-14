@@ -29,20 +29,21 @@ def login(username: str, password: str, user_storage: UserStorage):
     if user_storage.is_registered(username):
         pass
 
+
 def logout(username: str, user_storage: UserStorage):
     if user_storage.is_logged_in(username):
         user_storage.remove_from_logged_in(username)
 
-def add_contact(user:User, contact: User, user_storage:UserStorage):
+
+def add_contact(user: User, contact: User, user_storage: UserStorage):
     if user_storage.is_logged_in(user):
         user.contacts = contact
     else:
         logging.error("User nije logiran")
 
-def remove_contact(user:User, user_storage: UserStorage):
+
+def remove_contact(user: User, user_storage: UserStorage):
     if user_storage.is_logged_in(user):
         del user.contacts
     else:
         logging.error("User nije logiran")
-
-

@@ -1,5 +1,6 @@
 from user import User
 
+
 class UserStorage:
     def __init__(self):
         self.registered: list[User] = list()
@@ -25,7 +26,7 @@ class UserStorage:
         else:
             print("Momćilo nije logovan")
 
-    def log_in(self, user:User):
+    def log_in(self, user: User):
         if user not in self.logged_in:
             self.logged_in.append(user)
         else:
