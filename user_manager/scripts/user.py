@@ -27,7 +27,7 @@ class User:
 
     @password.setter
     def password(self, new_password) -> None:
-        self.__check_password_validity(new_password)
+        self.__check_password_validity(hash_password(new_password))
         self.__password = new_password
 
     @property

@@ -3,8 +3,8 @@ from time import sleep
 
 from hash_module import check_hash, hash_password
 from multiprocessing import Process
-from user import User
-from user_storage import UserStorage
+from .user import User
+from .user_storage import UserStorage
 
 
 __all__ = ["add_contact", "login", "login_process", "print_contacts", "register", "remove_contact"]

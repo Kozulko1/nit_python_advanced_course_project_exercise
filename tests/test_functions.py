@@ -2,7 +2,7 @@ import unittest
 
 from unittest.mock import MagicMock, patch
 
-from user_manager import User, UserStorage, print_contacts
+from user_manager import User, UserStorage, print_contacts, register
 
 
 class TestFunctions(unittest.TestCase):
