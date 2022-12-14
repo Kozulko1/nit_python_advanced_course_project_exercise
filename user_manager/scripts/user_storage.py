@@ -11,11 +11,19 @@ class UserStorage:
         else:
             print("Već je registrovan")
 
-    def remove_from_registered(self, user:User):
-        if user in self.registered:
-            self.registered.remove(user)
+    def is_registered(self, username: str):
+        for user in self.registered:
+            if user.name == username:
+                return True
+        return False
+
+    def remove_from_logged_in(self, username: str):
+        for user in self.logged_in:
+            if user.name == username:
+                self.logged_in.remove(user)
+                break
         else:
-            print("Već je neregistrovan")
+            print("Momćilo nije logovan")
 
     def log_in(self, user:User):
         if user not in self.logged_in:
@@ -23,7 +31,8 @@ class UserStorage:
         else:
             print("Već je logiran")
 
-    def is_logged_in(self, user:User):
-        if user in self.logged_in:
-            return True
+    def is_logged_in(self, username: str):
+        for user in self.logged_in:
+            if user.username == username:
+                return True
         return False
