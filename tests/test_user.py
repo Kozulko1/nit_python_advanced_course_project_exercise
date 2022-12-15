@@ -3,7 +3,8 @@ import unittest
 
 from unittest.mock import MagicMock, patch
 
-from user_manager import User, hash_password
+from user_manager import User
+from hash_module import hash_password
 
 
 class TestUser(unittest.TestCase):
