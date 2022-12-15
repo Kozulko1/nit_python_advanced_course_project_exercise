@@ -1,15 +1,4 @@
-import sys
-import os
-import pathlib
-
-
 from setuptools import setup, Extension
-from pathlib import Path
-
-
-def collect_c_extensions():
-    c_extensions_dir_path = Path(os.getcwd()) / Path("c_extensions")
-    c_extensions = os.listdir()
 
 
 setup(
