@@ -7,7 +7,7 @@ from .user import User
 from .user_storage import UserStorage
 
 
-__all__ = ["add_contact", "login", "logout" "login_process", "print_contacts", "register", "remove_contact"]
+__all__ = ["add_contact", "login", "logout", "print_contacts", "register", "remove_contact"]
 
 
 def login_process(username):

@@ -13,11 +13,11 @@ def main():
                 "3 - Add a new contact\n"
                 "4 - Remove contact from a user\n"
                 "5 - Print contacts from a user\n"
-                "6 - Logout"
+                "6 - Logout\n"
                 "7 - Exit app"
             )
         )
-        selection = int(input("Select option 1-7"))
+        selection = int(input("Select option 1-7 -> "))
         if selection not in range(1, 8):
             continue
         manage_input(selection, user_storage)
