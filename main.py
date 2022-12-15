@@ -35,7 +35,10 @@ def main():
 
 def manage_input(selection: int, storage: UserStorage):
     if selection == 1:
-        register(input("Username: "), input("Password: "), storage)
+        try:
+            register(input("Username: "), input("Password: "), storage)
+        except Exception as exc:
+            logging.error(exc)
     elif selection == 2:
         login(input("Username: "), input("Password: "), storage)
     elif selection == 3:
@@ -47,7 +50,11 @@ def manage_input(selection: int, storage: UserStorage):
         user = input("Username: ")
         remove_contact(user, storage)
     elif selection == 5:
-        print_contacts(storage.get_user(input("Username: ")), storage)
+        user = storage.get_user(input("Username: "))
+        if isinstance(user, User):
+            print_contacts(user, storage)
+        else:
+            logging.error("That user does not exist.")
     elif selection == 6:
         logout(input("Username: "), storage)
     elif selection == 7:

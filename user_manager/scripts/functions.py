@@ -54,6 +54,9 @@ def login(username: str, password: str, user_storage: UserStorage):
 def logout(username: str, user_storage: UserStorage):
     if user_storage.is_logged_in(username):
         user_storage.remove_from_logged_in(username)
+        logging.info(f"{username} logged out.")
+    else:
+        logging.info(f"{username} is not logged in.")
 
 
 def add_contact(username: str, contact: User, user_storage: UserStorage):
