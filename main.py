@@ -1,4 +1,5 @@
 import sys
+import logging
 
 from user_manager import (
     add_contact,
@@ -7,6 +8,7 @@ from user_manager import (
     print_contacts,
     register,
     remove_contact,
+    User,
     UserStorage,
 )
 
@@ -39,7 +41,7 @@ def manage_input(selection: int, storage: UserStorage):
     elif selection == 3:
         user = input("Username: ")
         contact = storage.get_user(input("Contact: "))
-        if contact:
+        if isinstance(contact, User):
             add_contact(user, contact, storage)
     elif selection == 4:
         user = input("Username: ")
@@ -53,4 +55,9 @@ def manage_input(selection: int, storage: UserStorage):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=getattr(logging, "INFO", None),
+        format="%(asctime)s.%(msecs)03d %(levelname)s: %(message)s",
+        datefmt="%H:%M:%S",
+    )
     main()
