@@ -11,7 +11,7 @@ static PyObject *hash_password(PyObject *self, PyObject *args)
         Py_RETURN_NONE;
     }
     char *key = "thisisthekey";
-    char hashed_value[13];
+    char hashed_value[strlen(password)];
     strcpy(hashed_value, password);
     for (int i = 0; i < (int)strlen(password); i++)
     {
@@ -33,7 +33,7 @@ static PyObject *check_hash(PyObject *self, PyObject *args)
         Py_RETURN_NONE;
     }
     char *key = "thisisthekey";
-    char hashed_value[13];
+    char hashed_value[strlen(password)];
     strcpy(hashed_value, password);
     for (int i = 0; i < (int)strlen(password); i++)
     {

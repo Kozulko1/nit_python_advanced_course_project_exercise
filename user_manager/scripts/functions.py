@@ -7,7 +7,9 @@ from .user import User
 from .user_storage import UserStorage
 
 
-__all__ = ["add_contact", "login", "logout", "print_contacts", "register", "remove_contact"]
+__all__ = ["add_contact", "login", "logout", "login_process", "print_contacts", "register", "remove_contact"]
+
+NOT_LOGGED_IN_ERROR = "{} not logged in"
 
 
 def login_process(username):
@@ -25,7 +27,7 @@ def print_contacts(user: User, user_storage: UserStorage):
                 logging.info("Reached the end of the contacts list")
                 break
     else:
-        logging.error(f"{user.username} is not logged in.")
+        logging.error(NOT_LOGGED_IN_ERROR.format(user.username))
 
 
 def register(username: str, password: str, user_storage: UserStorage):
@@ -44,9 +46,9 @@ def login(username: str, password: str, user_storage: UserStorage):
             process.join()
             user_storage.log_in(user)
         else:
-            logging.error("Fulao si šifru")
+            logging.error("Wrong password")
     else:
-        logging.error("Probaj da se logujes ponovno")
+        logging.error("Not registered")
 
 
 def logout(username: str, user_storage: UserStorage):
@@ -59,7 +61,7 @@ def add_contact(username: str, contact: User, user_storage: UserStorage):
         user = user_storage.get_user(username)
         user.contacts = contact
     else:
-        logging.error("User nije logiran")
+        logging.error(NOT_LOGGED_IN_ERROR.format(username))
 
 
 def remove_contact(username: str, user_storage: UserStorage):
@@ -67,4 +69,4 @@ def remove_contact(username: str, user_storage: UserStorage):
         user = user_storage.get_user(username)
         del user.contacts
     else:
-        logging.error("User nije logiran")
+        logging.error(NOT_LOGGED_IN_ERROR.format(username))

@@ -42,7 +42,9 @@ class TestUser(unittest.TestCase):
         user_instance.contacts = contact
 
         self.assertEqual([contact], user_instance.contacts)
-        mock_log.assert_called_once_with(logging.INFO, f"{contact} already exists in contacts.")
+        mock_log.assert_called_once_with(
+            logging.INFO, f"{contact} already exists in contacts."
+        )
 
         del user_instance.contacts
         self.assertEqual([], user_instance.contacts)
@@ -96,3 +98,7 @@ class TestUser(unittest.TestCase):
 
         another_user = User("jane_doe", hash_password("123"))
         self.assertFalse(user_instance == another_user)
+
+
+if __name__ == "__main__":
+    unittest.main()

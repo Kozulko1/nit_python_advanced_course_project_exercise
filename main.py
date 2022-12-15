@@ -1,6 +1,14 @@
 import sys
 
-from user_manager import add_contact, login, logout, print_contacts, register, remove_contact, UserStorage
+from user_manager import (
+    add_contact,
+    login,
+    logout,
+    print_contacts,
+    register,
+    remove_contact,
+    UserStorage,
+)
 
 
 def main():

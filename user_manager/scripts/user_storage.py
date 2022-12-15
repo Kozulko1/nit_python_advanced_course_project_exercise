@@ -1,3 +1,4 @@
+import logging
 from .user import User
 
 
@@ -10,7 +11,7 @@ class UserStorage:
         if user not in self.registered:
             self.registered.append(user)
         else:
-            print("Već je registrovan")
+            logging.error("Already registered")
 
     def get_user(self, username: str):
         for user in self.registered:
@@ -29,13 +30,13 @@ class UserStorage:
                 self.logged_in.remove(user)
                 break
         else:
-            print("Momćilo nije logovan")
+            logging.error("Not logged in")
 
     def log_in(self, user: User):
         if user not in self.logged_in:
             self.logged_in.append(user)
         else:
-            print("Već je logiran")
+            logging.error("Already logged in")
 
     def is_logged_in(self, username: str):
         for user in self.logged_in:

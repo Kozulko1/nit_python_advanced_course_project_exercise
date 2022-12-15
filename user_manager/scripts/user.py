@@ -46,21 +46,29 @@ class User:
         try:
             del self.__contacts[0]
         except IndexError as exc:
-            logging.log(logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}")
+            logging.log(
+                logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}"
+            )
 
     def delete_contact_by_user(self, user: User) -> None:
         try:
             del self.__contacts[self.__contacts.index(user)]
         except ValueError as exc:
-            logging.log(logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}")
+            logging.log(
+                logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}"
+            )
 
     def delete_contact_by_index(self, index: int) -> None:
         try:
             del self.__contacts[index]
         except IndexError as exc:
-            logging.log(logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}")
+            logging.log(
+                logging.ERROR, f"Tried to delete a nonexisting contact. Received {exc}"
+            )
         except TypeError as exc:
-            logging.log(logging.ERROR, f"Function parameter must be an integer. Received {exc}")
+            logging.log(
+                logging.ERROR, f"Function parameter must be an integer. Received {exc}"
+            )
 
     def __iter__(self) -> None:
         self.__element_pointer = 0
